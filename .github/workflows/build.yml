@@ -1,0 +1,31 @@
+name: Compilar APK Android
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar dependencias del sistema
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo6 cmake libffi-dev libssl-dev
+
+      - name: Instalar Buildozer y Cython
+        run: |
+          pip3 install --user --upgrade buildozer cython
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Construir APK con Buildozer
+        run: buildozer -v android debug
+
+      - name: Subir APK generado
+        uses: actions/upload-artifact@v4
+        with:
+          name: AprendeAlgoritmos-APK
+          path: bin/*.apk
