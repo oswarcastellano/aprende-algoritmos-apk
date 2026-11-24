@@ -18,11 +18,11 @@ jobs:
 
       - name: Instalar Buildozer y Cython
         run: |
-          pip3 install --user --upgrade buildozer cython
+          pip3 install --user --upgrade buildozer cython==0.29.36
           echo "$HOME/.local/bin" >> $GITHUB_PATH
 
       - name: Construir APK con Buildozer
-        run: buildozer -v android debug
+        run: yes | buildozer -v android debug
 
       - name: Subir APK generado
         uses: actions/upload-artifact@v4
