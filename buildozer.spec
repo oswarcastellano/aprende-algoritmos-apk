@@ -5,7 +5,7 @@ package.domain = org.educacion
 source.dir = .
 source.include_exts = py,png,jpg,jpeg,webp,ttf
 version = 0.1
-requirements = python3==3.11.6,hostpython3==3.11.6,kivy==2.3.1,pillow
+requirements = python3,kivy,pillow
 icon.filename = %(source.dir)s/ppal/projo.png
 orientation = landscape
 fullscreen = 1
@@ -18,3 +18,4 @@ android.ndk = 25b
 android.api = 33
 android.minapi = 21
 android.accept_sdk_license = True
+p4a.branch = release-2024.01.21
